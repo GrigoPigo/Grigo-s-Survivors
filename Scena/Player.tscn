@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1t7kjmdttpux"]
+
+[ext_resource type="Texture2D" uid="uid://c3llo77t23u8b" path="res://Characters/Player/Fairy.png" id="1_csd0p"]
+[ext_resource type="Script" path="res://Scena/Player.gd" id="1_ues4a"]
+[ext_resource type="PackedScene" uid="uid://b4w4nltttwx55" path="res://Scena/gun.tscn" id="3_kre2h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c0fxk"]
+radius = 11.0
+height = 64.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qweo4"]
+radius = 16.0
+height = 74.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ah0io"]
+bg_color = Color(0.299547, 0.299547, 0.299547, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqj1c"]
+bg_color = Color(0.233686, 0.727918, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ues4a")
+
+[node name="Fairy" type="Sprite2D" parent="."]
+texture = ExtResource("1_csd0p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -14)
+shape = SubResource("CapsuleShape2D_c0fxk")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="gun" parent="." instance=ExtResource("3_kre2h")]
+
+[node name="hitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -14)
+shape = SubResource("CapsuleShape2D_qweo4")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -43.0
+offset_top = -64.0
+offset_right = 44.0
+offset_bottom = -56.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ah0io")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uqj1c")
+value = 100.0
+show_percentage = false

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqw7xv60gpxbt"]
+
+[ext_resource type="Texture2D" uid="uid://d4krrtp6d4th0" path="res://Sprites/amo/arrow.png" id="1_06i6l"]
+[ext_resource type="Script" path="res://Scena/arrow.gd" id="1_41bxs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0gba"]
+size = Vector2(10, 50.9999)
+
+[node name="arrow" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_41bxs")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+rotation = -1.56169
+texture = ExtResource("1_06i6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 1.11022e-16)
+rotation = -1.5731
+shape = SubResource("RectangleShape2D_o0gba")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
